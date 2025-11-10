@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "795797947423",
+    "project_id": "dambe-23f3d",
+    "storage_bucket": "dambe-23f3d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795797947423:android:795ccd1453aa8efa53012a",
+        "android_client_info": {
+          "package_name": "com.example.dambe_sugu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDr3L2QRds3R-h7WL5rR8AQtj_Q-igB-LM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
