@@ -1,52 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:dambe_sugu/services/database_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart'; // généré par FlutterFire CLI
+import 'pages/login_page.dart';
+import 'pages/selection_role_page.dart';
+import 'pages/home_buyer.dart';
+import 'pages/home_seller.dart';
+import 'pages/splash_page.dart';
+import 'pages/onboarding_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  final baseDonnees = ServiceBaseDonnees();
-
-  // Initialiser toutes les données de test
-  await baseDonnees.initialiserDonnees();
-
-  runApp(const MyApp());
+  runApp(const DambeSuguApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class DambeSuguApp extends StatelessWidget {
+  const DambeSuguApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Firebase Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const HomePage(),
+    final GoRouter router = GoRouter(
+      initialLocation: '/splash',
+      routes: [
+        GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
+        GoRoute(path: '/onboarding', builder: (context, state) => const OnboardingPage()),
+        GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
+        GoRoute(path: '/role', builder: (context, state) => const RoleSelectionPage()),
+        GoRoute(path: '/buyer', builder: (context, state) => const HomeBuyer()),
+        GoRoute(path: '/seller', builder: (context, state) => const HomeSeller()),
+      ],
+      redirect: (context, state) {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user == null) {
+          return '/onboarding';
+        }
+        return null;
+      },
     );
-  }
-}
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Firebase Demo'),
-      ),
-      body: const Center(
-        child: Text(
-          'Les collections de test ont été créées dans Firestore !',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 20),
+    return MaterialApp.router(
+      title: 'Dambe Sugu',
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: const Color(0xFFC08457),
+        scaffoldBackgroundColor: const Color(0xFFFAF3E0),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Color(0xFF1C1C1C)),
         ),
+        fontFamily: 'Poppins',
       ),
     );
   }
