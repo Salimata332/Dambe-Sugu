@@ -10,8 +10,7 @@ class ProductModel {
   final String nom;
   final String categorie;
   
-  // ignore: prefer_typing_uninitialized_variables
-  var published;
+  bool published;
 
   ProductModel({
     required this.idProduit,

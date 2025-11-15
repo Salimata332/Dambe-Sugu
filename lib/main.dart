@@ -1,3 +1,6 @@
+import 'package:dambe_sugu/features/profile/pages/help_support_screen.dart';
+import 'package:dambe_sugu/features/profile/pages/profile_screen.dart';
+import 'package:dambe_sugu/features/profile/pages/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,6 +35,19 @@ class DambeSuguApp extends StatelessWidget {
         GoRoute(path: '/role', builder: (context, state) => const RoleSelectionPage()),
         GoRoute(path: '/buyer', builder: (context, state) => const HomeBuyer()),
         GoRoute(path: '/seller', builder: (context, state) => const HomeSeller()),
+        GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()) ,
+        GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
+        GoRoute(path: '/help-support', builder: (context, state) => const HelpSupportScreen()),
+GoRoute(
+  path: '/order-history',
+  builder: (context, state) => Scaffold(
+    body: Center(
+      child: Text('Order history'),
+    ),
+  ),
+),
+
+  
       ],
       redirect: (context, state) {
         final user = FirebaseAuth.instance.currentUser;
