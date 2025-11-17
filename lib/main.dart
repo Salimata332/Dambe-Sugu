@@ -59,7 +59,6 @@ class DambeSuguApp extends StatelessWidget {
         bodyMedium: TextStyle(color: Color(0xFF1C1C1C)),
       ),
       fontFamily: 'Poppins',
-      debugShowCheckedModeBanner: false,
     );
 
 
