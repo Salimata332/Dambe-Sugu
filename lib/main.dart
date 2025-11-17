@@ -13,7 +13,8 @@ import 'pages/home_buyer.dart';
 import 'pages/home_seller.dart';
 import 'pages/splash_page.dart';
 import 'pages/onboarding_page.dart';
-
+import 'pages/signup_client_page.dart';
+import 'pages/signup_seller_page.dart';
 // Pages de Chat (Messagerie Branch)
 import 'screens/chat_list_screen.dart';
 import 'screens/chat_screen.dart';
@@ -59,7 +60,6 @@ class DambeSuguApp extends StatelessWidget {
         bodyMedium: TextStyle(color: Color(0xFF1C1C1C)),
       ),
       fontFamily: 'Poppins',
-      debugShowCheckedModeBanner: false,
     );
 
 
@@ -70,12 +70,15 @@ class DambeSuguApp extends StatelessWidget {
       
       routes: [
         // Routes d'Authentification
-        GoRoute(path: '/splash', builder: (context, state) => const SplashPage()),
+        GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
         GoRoute(path: '/onboarding', builder: (context, state) => const OnboardingPage()),
         GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
         GoRoute(path: '/role', builder: (context, state) => const RoleSelectionPage()),
         GoRoute(path: '/buyer', builder: (context, state) => const HomeBuyer()),
         GoRoute(path: '/seller', builder: (context, state) => const HomeSeller()),
+        GoRoute(path: '/signup-client',builder: (context, state) => const SignUpClientPage()),
+        GoRoute(path: '/signup-seller',builder: (context, state) => const SignUpSellerPage()),
+
 
         // Routes de Messagerie (Maintenant accessibles via le routing)
         GoRoute(path: '/chats', builder: (context, state) => const ChatListScreen()),
@@ -93,7 +96,6 @@ class DambeSuguApp extends StatelessWidget {
         final loggedIn = user != null;
         final isLoggingIn = state.matchedLocation == '/login';
         final isSplashing = state.matchedLocation == '/splash';
-        final isRoleSelecting = state.matchedLocation == '/role';
         
         // Si l'utilisateur n'est pas connecté et n'est pas déjà en train d'atterrir
         if (!loggedIn && !isSplashing && !isLoggingIn) {
