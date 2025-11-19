@@ -1,3 +1,4 @@
+import 'package:dambe_sugu/features/catalog/pages/catalog_page.dart';
 import 'package:dambe_sugu/features/profile/pages/help_support_screen.dart';
 import 'package:dambe_sugu/features/profile/pages/profile_screen.dart';
 import 'package:dambe_sugu/features/profile/pages/settings_screen.dart';
@@ -78,6 +79,7 @@ class DambeSuguApp extends StatelessWidget {
         GoRoute(path: '/role', builder: (context, state) => const RoleSelectionPage()),
         GoRoute(path: '/buyer', builder: (context, state) => const HomeBuyer()),
         GoRoute(path: '/seller', builder: (context, state) => const HomeSeller()),
+        GoRoute(path: '/catalog', builder: (context, state) => const CatalogPage()),
       ],
       redirect: (context, state) {
         final user = FirebaseAuth.instance.currentUser;
